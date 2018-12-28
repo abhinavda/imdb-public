@@ -1,19 +1,17 @@
 from selenium import webdriver
+from webdriver_manager.chrome import ChromeDriverManager
 from selenium.common.exceptions import NoSuchElementException
 import time
 import bs4,requests
 import re
 
 from youtubesearch import youtube_search
-
-browser=webdriver.Chrome('/Users/abhinavdamarapati/Downloads/chromedriver')
-#/Users/abhinavdamarapati/Downloads/phantomjs-2.1.1-macosx/bin/phantomjs
-#browser=webdriver.PhantomJS("/Users/abhinavdamarapati/Downloads/phantomjs-2.1.1-macosx/bin/phantomjs")
-#browser.get("https://www.google.com/")
+browser = webdriver.Chrome(ChromeDriverManager().install())
 browser.get("https://www.imdb.com/user/ur37405962/watchlist")
 time.sleep(3)
 
-def click_if_button_exists() :
+
+def click_if_button_exists():
     try :
         browser.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         python_button=browser.find_element_by_xpath("//*[@id='center-1-react']/div/div[3]/div[2]/button/span[2]")
@@ -22,10 +20,11 @@ def click_if_button_exists() :
     except NoSuchElementException:
         return False
 
-count=2
-while click_if_button_exists() == True :
+
+count = 2
+while click_if_button_exists():
     time.sleep(2)
-    count_value=str(9000*count)
+    count_value = str(9000*count)
     execute_script_browser="window.scrollTo(document.body.scrollHeight,"+count_value+");"
     browser.execute_script(str(execute_script_browser))
     count+=1
@@ -53,7 +52,7 @@ browser.close()
 print "browser is closed."
 # for yy in titlearr :
 #     print yy
-
+#print len(titlearr)
 ### Calling Youtube API here
 video_ids=""
 count=0   ##divide by 50
@@ -67,7 +66,7 @@ for x in range(10):
         video_ids=""
     id = youtube_search(titlearr[x]) ## Using YT API to get video_id
     video_ids = str(video_ids) + str(id) + ","
-    #if x == len(titlearr)-1 :  ## On the last video, just append it to final resulst array
+    # if x == len(titlearr)-1 :  ## On the last video, just append it to final resulst array
     if x == 9 :
         print "hello !!"
         results.append(video_ids)
