@@ -6,9 +6,10 @@ from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 
 with open('dev_key') as f :
-    key=f.readline()
+    key=f.readline().strip()
 #print key
-DEVELOPER_KEY = str(key)
+DEVELOPER_KEY = key
+print DEVELOPER_KEY
 YOUTUBE_API_SERVICE_NAME = 'youtube'
 YOUTUBE_API_VERSION = 'v3'
 

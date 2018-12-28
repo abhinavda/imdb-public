@@ -51,22 +51,24 @@ for x in range(len(title1))[1:] :
     titlearr.append(final_key)
 browser.close()
 print "browser is closed."
-for yy in titlearr :
-    print yy
+# for yy in titlearr :
+#     print yy
 
 ### Calling Youtube API here
 video_ids=""
 count=0   ##divide by 50
 
 results=[]
-for x in range(len(titlearr)) : ##selecting next 50  ##Only 50 videos allowed by youtube per play_list ? :|
+#for x in range(len(titlearr)) : ##selecting next 50  ##Only 50 videos allowed by youtube per play_list ? :|
+for x in range(10):
     print titlearr[x]
     if count%50==0 and count!=0: ## 0%50 gives 0
         results.append(video_ids)
         video_ids=""
     id = youtube_search(titlearr[x]) ## Using YT API to get video_id
     video_ids = str(video_ids) + str(id) + ","
-    if x == len(titlearr)-1 :  ## On the last video, just append it to final resulst array
+    #if x == len(titlearr)-1 :  ## On the last video, just append it to final resulst array
+    if x == 9 :
         print "hello !!"
         results.append(video_ids)
     count+=1
