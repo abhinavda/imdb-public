@@ -60,7 +60,7 @@ browser.close()
 print "browser is closed."
 # for yy in titlearr :
 #     print yy
-#print len(titlearr)
+print len(titlearr)
 ### Calling Youtube API here
 video_ids=""
 count=0   ##divide by 50
