@@ -5,15 +5,15 @@ import argparse
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 
-with open('dev_key') as f :
-    key=f.readline().strip()
-#print key
-DEVELOPER_KEY = key
-print DEVELOPER_KEY
+# with open('dev_key') as f :
+#     key=f.readline().strip()
+# #print key
+# DEVELOPER_KEY = key
+# print DEVELOPER_KEY
 YOUTUBE_API_SERVICE_NAME = 'youtube'
 YOUTUBE_API_VERSION = 'v3'
 
-def youtube_search(movie):
+def youtube_search(movie,DEVELOPER_KEY):
   youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION,
     developerKey=DEVELOPER_KEY)
 
@@ -46,7 +46,7 @@ if __name__ == '__main__':
   args = parser.parse_args()
 
   try:
-    youtube_search(args)
+    youtube_search(args,key)
     #print args
   except HttpError, e:
     print 'An HTTP error %d occurred:\n%s' % (e.resp.status, e.content)

@@ -1,13 +1,12 @@
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.common.exceptions import NoSuchElementException
-import time
-import bs4,requests
-import re
-
+import time,bs4,requests,re,sys
 from youtubesearch import youtube_search
+
+broswer_url="https://www.imdb.com/user/"+str(sys.argv[2])+"/watchlist"
 browser = webdriver.Chrome(ChromeDriverManager().install())
-browser.get("https://www.imdb.com/user/ur37405962/watchlist")
+browser.get(broswer_url)
 time.sleep(3)
 
 
@@ -64,7 +63,7 @@ for x in range(10):
     if count%50==0 and count!=0: ## 0%50 gives 0
         results.append(video_ids)
         video_ids=""
-    id = youtube_search(titlearr[x]) ## Using YT API to get video_id
+    id = youtube_search(titlearr[x],sys.argv[1]) ## Using YT API to get video_id
     video_ids = str(video_ids) + str(id) + ","
     # if x == len(titlearr)-1 :  ## On the last video, just append it to final resulst array
     if x == 9 :
