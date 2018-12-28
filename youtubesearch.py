@@ -12,6 +12,7 @@ from googleapiclient.errors import HttpError
 # print DEVELOPER_KEY
 YOUTUBE_API_SERVICE_NAME = 'youtube'
 YOUTUBE_API_VERSION = 'v3'
+DEVELOPER_KEY=""
 
 def youtube_search(movie,DEVELOPER_KEY):
   youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION,
@@ -46,7 +47,7 @@ if __name__ == '__main__':
   args = parser.parse_args()
 
   try:
-    youtube_search(args,key)
+    youtube_search(args,DEVELOPER_KEY)
     #print args
   except HttpError, e:
     print 'An HTTP error %d occurred:\n%s' % (e.resp.status, e.content)

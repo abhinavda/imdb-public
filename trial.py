@@ -1,11 +1,20 @@
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.common.exceptions import NoSuchElementException
-import time,bs4,requests,re,sys
+import time,bs4,requests,re,sys,os
 from youtubesearch import youtube_search
 
+## for docker container
+chrome_options = webdriver.ChromeOptions()
+chrome_options.add_argument("no-sandbox")
+chrome_options.add_argument("--disable-extensions")
+chrome_options.add_argument("--headless")
+driver = os.path.join("/usr/local/bin/chromedriver")
+browser = webdriver.Chrome(executable_path=driver,chrome_options=chrome_options)
+
 broswer_url="https://www.imdb.com/user/"+str(sys.argv[2])+"/watchlist"
-browser = webdriver.Chrome(ChromeDriverManager().install())
+# for command line
+#browser = webdriver.Chrome(ChromeDriverManager().install())
 browser.get(broswer_url)
 time.sleep(3)
 
