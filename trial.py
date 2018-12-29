@@ -57,27 +57,32 @@ for x in range(len(title1))[1:] :
     final_key=movie+" "+year
     titlearr.append(final_key)
 browser.close()
-print "browser is closed."
+print "browser is closed, searching for titles in youtube"
 # for yy in titlearr :
 #     print yy
-print len(titlearr)
+print
+print "movies / tvshows found : ",len(titlearr)
 ### Calling Youtube API here
 video_ids=""
 count=0   ##divide by 50
 
 results=[]
-#for x in range(len(titlearr)) : ##selecting next 50  ##Only 50 videos allowed by youtube per play_list ? :|
-for x in range(10):
+print
+print "List of movies : "
+print
+for x in range(len(titlearr)) : ##selecting next 50  ##Only 50 videos allowed by youtube per play_list ? :|
+#for x in range(10): #Only for test
     print titlearr[x]
     if count%50==0 and count!=0: ## 0%50 gives 0
         results.append(video_ids)
         video_ids=""
     id = youtube_search(titlearr[x],sys.argv[1]) ## Using YT API to get video_id
     video_ids = str(video_ids) + str(id) + ","
-    # if x == len(titlearr)-1 :  ## On the last video, just append it to final resulst array
-    if x == 9 :
+    if x == len(titlearr)-1 :  ## On the last video, just append it to final resulst array
+    #if x == 9 : ## only for test
         print "hello !!"
         results.append(video_ids)
     count+=1
+print "Trailer playlists (50 trailers limit per each playlist) : "
 for yy in results :
     print "http://www.youtube.com/watch_videos?video_ids="+yy[:-1]
