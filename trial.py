@@ -61,15 +61,15 @@ print "browser is closed, searching for titles in youtube"
 # for yy in titlearr :
 #     print yy
 print
-print "movies / tvshows found : ",len(titlearr)
+print "movies/tv shows found : ",len(titlearr)
 ### Calling Youtube API here
 video_ids=""
 count=0   ##divide by 50
 
 results=[]
 print
-print "List of movies : "
-print
+print "List of movies/tv shows : "
+print "-----------------"
 for x in range(len(titlearr)) : ##selecting next 50  ##Only 50 videos allowed by youtube per play_list ? :|
 #for x in range(10): #Only for test
     print titlearr[x]
@@ -83,6 +83,8 @@ for x in range(len(titlearr)) : ##selecting next 50  ##Only 50 videos allowed by
         print "hello !!"
         results.append(video_ids)
     count+=1
+print
 print "Trailer playlists (50 trailers limit per each playlist) : "
+print "----------------------------------------------------------"
 for yy in results :
     print "http://www.youtube.com/watch_videos?video_ids="+yy[:-1]
